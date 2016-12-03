@@ -7,4 +7,4 @@ applications:
   host: SimpleOAuth2
   disk_quota: 1024M
   buildpack: swift_buildpack
-  command: Kitura-Starter
+  command: SimpleOAuth2

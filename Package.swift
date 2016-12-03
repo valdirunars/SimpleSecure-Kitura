@@ -17,15 +17,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Kitura-Starter",
+    name: "SimpleOAuth2",
     targets: [
-      Target(name: "Kitura-Starter", dependencies: [])
+      Target(name: "SimpleOAuth2", dependencies: [])
     ],
     dependencies: [
       .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 1, minor: 2),
       .Package(url: "https://github.com/IBM-Swift/HeliumLogger.git", majorVersion: 1, minor: 1),
       .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 8),
       .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", majorVersion: 15),
-      .Package(url: "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-swift.git", majorVersion: 0, minor: 6)
+      .Package(url: "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-swift.git", majorVersion: 0, minor: 6),
+      .Package(url: "https://github.com/IBM-Swift/Kitura-StencilTemplateEngine", majorVersion: 1, minor: 1),
+      .Package(url: "https://github.com/kylef/JSONWebToken.swift.git", majorVersion: 2, minor: 0)
     ],
     exclude: ["Makefile", "Package-Builder"])
