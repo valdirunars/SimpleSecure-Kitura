@@ -1,6 +1,6 @@
 //
 //  CredentialMiddlewear.swift
-//  SwiftAPI
+//  SimpleOAuth2
 //
 //  Created by Þorvaldur Rúnarsson on 29/11/2016.
 //
@@ -9,10 +9,8 @@
 import Foundation
 import Kitura
 import SwiftyJSON
-/**
- Custom middleware that allows Cross Origin HTTP requests
- This will allow wwww.todobackend.com to communicate with your server
- */
+
+
 class SimpleCredentialMiddleware: RouterMiddleware {
 
 

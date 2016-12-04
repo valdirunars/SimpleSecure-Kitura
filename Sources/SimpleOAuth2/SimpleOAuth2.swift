@@ -1,6 +1,6 @@
 //
 //  SimpleOAuth2.swift
-//  SwiftAPI
+//  SimpleOAuth2
 //
 //  Created by Þorvaldur Rúnarsson on 29/11/2016.
 //
@@ -15,7 +15,7 @@ import JWT
 public class SimpleOAuth2 {
 
     static let authPath = "/oauth2/authorize"
-
+    
     public static var sharedInstance = SimpleOAuth2()
 
     private var authHashes = [Data]()

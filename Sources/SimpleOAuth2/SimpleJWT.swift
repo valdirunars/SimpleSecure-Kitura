@@ -1,6 +1,6 @@
 //
 //  JWTAuthenticator.swift
-//  SwiftAPI
+//  SimpleOAuth2
 //
 //  Created by Þorvaldur Rúnarsson on 30/11/2016.
 //

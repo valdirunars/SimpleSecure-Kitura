@@ -1,6 +1,6 @@
 //
 //  RouterResponse+Fail.swift
-//  SwiftAPI
+//  SimpleOAuth2
 //
 //  Created by Þorvaldur Rúnarsson on 01/12/2016.
 //

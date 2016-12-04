@@ -3,5 +3,5 @@ app:
   ports:
     - "8090:8090"
   volumes:
-    - .:/root/Kitura-Starter
-  command: bash -c "make clean -C Kitura-Starter && make -C Kitura-Starter && Kitura-Starter/.build/debug/Kitura-Starter"
+    - .:/root/SimpleOAuth2
+  command: bash -c "make clean -C SimpleOAuth2 && make -C SimpleOAuth2 && SimpleOAuth2/.build/debug/SimpleOAuth2"

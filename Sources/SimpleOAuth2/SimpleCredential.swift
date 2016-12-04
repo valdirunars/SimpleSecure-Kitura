@@ -1,6 +1,6 @@
 //
 //  SimpleCredential.swift
-//  SwiftAPI
+//  SimpleOAuth2
 //
 //  Created by Þorvaldur Rúnarsson on 29/11/2016.
 //
