@@ -15,11 +15,6 @@ import SwiftyJSON
  */
 class SimpleCredentialMiddleware: RouterMiddleware {
 
-    private let authenticator: SimpleJWT
-
-    init(authenticator: SimpleJWT) {
-        self.authenticator = authenticator
-    }
 
     func handle(request: RouterRequest, response: RouterResponse, next: @escaping () -> Void) throws {
         
@@ -45,7 +40,17 @@ class SimpleCredentialMiddleware: RouterMiddleware {
         }
         
         let token = args[1]
-        if !self.authenticator.authorize(token: token) {
+        
+        var authorized = false
+        for auth in SimpleOAuth2.sharedInstance.authenticators.values {
+            if auth.authorize(token: token) &&
+                SimpleOAuth2.sharedInstance.isPath(request.urlComponents.path, authorizedIn: auth.scope) {
+                authorized = true
+                break
+            }
+        }
+        
+        if !authorized {
             response.sendUnauthorized(message: "Authentication needed.", code: 3)
             return
         }

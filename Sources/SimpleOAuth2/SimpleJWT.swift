@@ -33,10 +33,12 @@ public class SimpleJWT {
     public static let tokenDuration: TimeInterval = 60 * 30 // 30 min
     
     private let issuer: String
+    public let scope: String
     private let algorithm: Algorithm
     
-    init(issuer: String, algorithm: MacAlgorithm, secret: Data) {
+    init(issuer: String, scope: String, using algorithm: MacAlgorithm, with secret: Data) {
         self.issuer = issuer
+        self.scope = scope
         self.algorithm = algorithm.toAlgorithm(with: secret)
     }
     
@@ -46,6 +48,7 @@ public class SimpleJWT {
             builder.issuer = issuer
             builder.issuedAt = Date()
             builder.expiration = Date().addingTimeInterval(expiresIn)
+            builder["scope"] = self.scope
         }
         return token
     }
@@ -63,8 +66,13 @@ public class SimpleJWT {
                 return false
             }
             
+            guard let scp = (payload["scope"] as? String) else {
+                return false
+            }
+            
             return Date().timeIntervalSince1970 < exp &&
-                        iss == self.issuer
+                        iss == self.issuer &&
+                        scp == self.scope
             
         } catch {
             print("Failed to decode JWT: \(error)")

@@ -12,62 +12,44 @@ import SwiftyJSON
 import JWT
 
 
-class SimpleOAuth2 {
+public class SimpleOAuth2 {
 
     static let authPath = "/oauth2/authorize"
-    private static var router = Router()
 
     public static var sharedInstance = SimpleOAuth2()
 
-    private var authHash: Data?
-    private var authenticator: SimpleJWT?
+    private var authHashes = [Data]()
+    public var authenticators = [Data:SimpleJWT]()
     
+    /// Paths where no authentication is needed
     public var publicPaths: [String] = [String]()
+    
+    /// A dictionary where key represents a router path and value represents a comma seperated list scopes that the path is restricted to.
+    public var restrictedPaths = [String:String]()
 
-    public func isPublic(url: String) -> Bool {
+    
 
-        for path in self.publicPaths {
-
-            let subPaths = path.components(separatedBy: "/")
-            let urlSubPaths = url.components(separatedBy: "/")
-
-            if (urlSubPaths.count > subPaths.count
-                    && subPaths[subPaths.count-1] != "*")
-                || urlSubPaths.count < subPaths.count {
-                continue
-            }
-
-            var success = true
-            for i in 0 ..< subPaths.count {
-
-                if !(subPaths[i] == urlSubPaths[i] || subPaths[i] == "*") {
-                    success = false
-                }
-            }
-            if (success) {
-                return true
-            }
-
-        }
-
-        return false
-    }
-
-
-    public func simplySecure(router: Router, with credentials: SimpleCredential) {
+    /// Secures the routes of router with the specified credentials (clientId, clientSecret, scope), see SimpleOAuth2's scopes property for further info on scope validation
+    public func simplySecure(router: Router, with credentials: [SimpleCredential]) {
         router.post(SimpleOAuth2.authPath, handler: SimpleOAuth2.authorize)
 
-        let auth = SimpleJWT(issuer: credentials.clientId, algorithm: .hs512, secret: credentials.clientSecret.data(using: .utf8)!)
-        SimpleOAuth2.router = router
-        SimpleOAuth2.sharedInstance.authHash = credentials.hashedString().data(using: .utf8)!
-        SimpleOAuth2.sharedInstance.authenticator = auth
+        for cred in credentials {
+            let credData = cred.hashedString().data(using: .utf8)!
+            let auth = SimpleJWT(issuer: cred.clientId, scope: cred.scope, using: .hs512, with: cred.clientSecret.data(using: .utf8)!)
+            
+            SimpleOAuth2.sharedInstance.authenticators[credData] = auth
+            SimpleOAuth2.sharedInstance.authHashes.append(credData)
+        }
+        
         router.all("/*", middleware: BodyParser())
-        router.all("/*", middleware: SimpleCredentialMiddleware(authenticator: auth))
+        router.all("/*", middleware: SimpleCredentialMiddleware())
     }
 
 
     private static func authorize(request: RouterRequest, response: RouterResponse, next: @escaping () -> Void) -> Void {
 
+        
+        // 1 READ PARAMETERS FROM REQUEST BODY
         var b: String?
         
         do {
@@ -101,17 +83,8 @@ class SimpleOAuth2 {
             return
         }
         
-        guard let storedHash = SimpleOAuth2.sharedInstance.authHash else {
-            response.status(.internalServerError).send(json: JSON([
-                "errorMessage":"Failed to fetch internal credentials."
-                ]))
-            return
-        }
-        
-        guard let authenticator = SimpleOAuth2.sharedInstance.authenticator else {
-            response.status(.internalServerError).send(json: JSON([
-                "errorMessage":"Authenticator not set up correctly."
-                ]))
+        guard let scope = authParams["scope"] else {
+            response.sendBadRequest(message: "Invalid scope")
             return
         }
         
@@ -120,18 +93,38 @@ class SimpleOAuth2 {
 
             return
         }
-
-        let credential = SimpleCredential(clientId: clientId, clientSecret: clientSecret)
-
+        
+        // 2 CREATE CREDENTIAL DATA FROM INPUT DATA
+        let credential = SimpleCredential(clientId: clientId, clientSecret: clientSecret, scope: scope)
         let hash = credential.hashedString()
         
-        let comparingHash = String(data: storedHash, encoding: .utf8)
+        // 3 CHECK IF CREDENTIALS EXIST IN APP
+        var authorized = false
+        for storedHash in SimpleOAuth2.sharedInstance.authHashes {
+            let comparingHash = String(data: storedHash, encoding: .utf8)
+            if (hash == comparingHash) {
+                authorized = true
+                break
+            }
 
-        if (hash != comparingHash) {
+        }
+        
+        if (!authorized) {
             response.sendUnauthorized(message: "Invalid credentials.", code: 1)
             return
         }
 
+        
+        // 4 GET THE AUTHENTICATOR, CREATE A TOKEN AND SEND IT
+        guard let hashData = hash.data(using: .utf8) else {
+            response.sendUnauthorized(message: "Request unauthorized.", code: 1)
+            return
+        }
+        guard let authenticator = SimpleOAuth2.sharedInstance.authenticators[hashData] else {
+            response.sendUnauthorized(message: "Request unauthorized.", code: 2)
+            return
+        }
+        
         let token = authenticator.encode(with: clientId, expiresIn: SimpleJWT.tokenDuration)
 
         try? response.send(json: JSON([

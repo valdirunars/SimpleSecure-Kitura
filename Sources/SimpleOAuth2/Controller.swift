@@ -42,7 +42,15 @@ public class Controller {
       "/",
       "/static/*"
     ]
-    SimpleOAuth2.sharedInstance.simplySecure(router: router, with: SimpleCredential(clientId: "1234", clientSecret: "4321"))
+    SimpleOAuth2.sharedInstance.restrictedPaths = [
+        "/uploadTest": "admin"
+    ]
+    
+    SimpleOAuth2.sharedInstance.simplySecure(router: router, with: [
+        SimpleCredential(clientId: "1234", clientSecret: "4321", scope: "admin"),
+        SimpleCredential(clientId: "4321", clientSecret: "1234", scope: "user")
+    ])
+    
     // Serve static content from "public"
     router.all("/static", middleware: StaticFileServer())
     router.add(templateEngine: StencilTemplateEngine())
