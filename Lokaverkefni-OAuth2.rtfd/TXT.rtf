@@ -8,18 +8,17 @@
 \f0\b\fs36 \cf0 An attempt to explain OAuth 2.0 
 \b0 \
 
-\fs28 One of the goals of OAuth 2.0 is to reduce the attack window attackers have to access the end-user\'92s personal data. \
-The security protocol addresses a big security in login systems, which is simply the fact that there are to many login systems.\
+\fs28 One of the goals of OAuth 2.0 is to reduce the attack window to the end-user\'92s  personal data. The security protocol addresses a big security in login systems, which is simply the fact that there are to many login systems.\
 \
-When a user registers for an account, he typically provides a full name, username and password at least to the requesting service. According to {\field{\*\fldinst{HYPERLINK "https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/"}}{\fldrslt this blog post}} by IT security giant Sophos, 55% of service users reuse most if not all their passwords. This creates a giant window for attackers if passwords are kept in each service\'92s database for authorization purposes. So in theory, 55% of users send over their password multiple times when they want to use multiple service providers within a short period of time.\
+When a user registers for an account, he usually provides a full name, email, username and password to the requesting service. According to {\field{\*\fldinst{HYPERLINK "https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/"}}{\fldrslt this blog post}} by IT security giant Sophos, 55% of service users reuse most if not all their passwords. This creates a giant window for attackers especially if passwords are kept in each service\'92s database. Clearly this is a problem. When users use multiple services at a time there is at least 55% chance of their password being sent multiple times over the wire.\
 \
 OAuth 2.0 tries to address this problem by providing the user with a way to authenticate with a service without sending over his password. \
 \
-If the user already has an account for a service acting as an OAuth 2.0 provider, he should be able to authenticate to essentially every service trusting that a particular OAuth 2.0 provider. \
-This can be accomplished by redirecting the user to logging into the OAuth 2.0 providing service. By logging into that service the user generates a reusable token signed by the OAuth 2.0 provider along with an added payload including further information about the token, f.x. the scope of authority for the token, expiration date and such information.\
-With this solution the user will be able to authenticate using his credentials without actually sending his credentials over the wire in each request. The security of this implementation, lies in the fact that the client sending the request will not know the user\'92s credentials but will still be able to know his scope of authority.\
+If the user already has an account for a service acting as an OAuth 2.0 provider, he should be able to authenticate to essentially every service trusting that particular OAuth 2.0 provider. This can be accomplished by redirecting the user to logging into the OAuth 2.0 providing service. By logging into that service the user generates a reusable token signed by the OAuth 2.0 provider along with an added payload including further information about the token e.g. the scope of authority for the token, expiration date and non-sensItive info about the user.\
 \
-But O\'92Auth 2.0 also specifies an improvement when connecting systems without user management. Like when connecting an app/apps or device/devices to an API. Introducing O\'92Auth 2\'92 s client_credential grant type.\
+With this solution the user will be able to authenticate using his credentials without actually sending his credentials over the wire in each request. The security of this implementation, lies in the fact that the client sending the request will not have to know each user\'92s credentials but will still be able to know his scope of authority.\
+\
+O\'92Auth 2.0 also specifies an improvement when connecting systems without user management. Like when connecting app/apps or device/devices to an API. Introducing O\'92Auth 2\'92 s client_credential grant type.\
 
 \b \
 \

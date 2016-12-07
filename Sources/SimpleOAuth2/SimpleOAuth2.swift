@@ -24,10 +24,9 @@ public class SimpleOAuth2 {
     /// Paths where no authentication is needed
     public var publicPaths: [String] = [String]()
     
-    /// A dictionary where key represents a router path and value represents a comma seperated list scopes that the path is restricted to.
+    /// A dictionary where key represents a router path and value represents a comma seperated list scopes that the path is restricted to. If a path is not included in this path a request will only need to be authorized by any valid credential.
     public var restrictedPaths = [String:String]()
 
-    
 
     /// Secures the routes of router with the specified credentials (clientId, clientSecret, scope), see SimpleOAuth2's scopes property for further info on scope validation
     public func simplySecure(router: Router, with credentials: [SimpleCredential]) {
@@ -64,7 +63,11 @@ public class SimpleOAuth2 {
             return
         }
 
-        let authParams = extractParams(from: body)
+        guard let authParams = extractParams(from: body) else {
+            response.sendBadRequest(message: "Invalid body, use raw utf8 encoded JSON.")
+            
+            return
+        }
 
         guard let clientId = authParams["client_id"] else {
             response.sendBadRequest(message: "No id.")
@@ -131,8 +134,11 @@ public class SimpleOAuth2 {
 
     }
 
-    private static func extractParams(from body: String) -> [String: String] {
-        let json = JSON(data: body.data(using: .utf8)!)
+    private static func extractParams(from body: String) -> [String: String]? {
+        guard let jsonData = body.data(using: .utf8) else {
+            return nil
+        }
+        let json = JSON(data: jsonData)
         var params = [String: String]()
 
         for (key, object) in json {
