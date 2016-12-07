@@ -1,18 +1,18 @@
 <!doctype html>
 
 <html lang="en">
-<head>
-  <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-  <title>Lokaverkefni</title>
-  <link rel="stylesheet" href="/static/stylesheets/styles.css">
-  <meta name="description" content="Lokaverkefni fyrir Háskóla Íslands">
-  <meta name="author" content="Þorvaldur Rúnarsson">
-</head>
+        <title>Lokaverkefni</title>
+        <link rel="stylesheet" href="/static/stylesheets/styles.css">
+        <meta name="description" content="Lokaverkefni fyrir Háskóla Íslands">
+        <meta name="author" content="Þorvaldur Rúnarsson">
+        <script src="/static/scripts/jquery-3.1.1.min.js"></script>
+        <script src="/static/scripts/main.js"></script>
+    </head>
 
-<body>
+    <body>
 
-  <h1> YEAH AWESOME </h1>
-
-</body>
+    </body>
 </html>

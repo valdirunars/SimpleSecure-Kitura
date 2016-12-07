@@ -18,8 +18,8 @@ public class SimpleOAuth2 {
     
     public static var sharedInstance = SimpleOAuth2()
 
-    private var authHashes = [Data]()
-    public var authenticators = [Data:SimpleJWT]()
+    private var authHashes = [String]()
+    public var authenticators = [String:SimpleJWT]()
     
     /// Paths where no authentication is needed
     public var publicPaths: [String] = [String]()
@@ -34,11 +34,11 @@ public class SimpleOAuth2 {
         router.post(SimpleOAuth2.authPath, handler: SimpleOAuth2.authorize)
 
         for cred in credentials {
-            let credData = cred.hashedString().data(using: .utf8)!
+            let credHash = cred.hashedString()
             let auth = SimpleJWT(issuer: cred.clientId, scope: cred.scope, using: .hs512, with: cred.clientSecret.data(using: .utf8)!)
             
-            SimpleOAuth2.sharedInstance.authenticators[credData] = auth
-            SimpleOAuth2.sharedInstance.authHashes.append(credData)
+            SimpleOAuth2.sharedInstance.authenticators[credHash] = auth
+            SimpleOAuth2.sharedInstance.authHashes.append(credHash)
         }
         
         router.all("/*", middleware: BodyParser())
@@ -100,8 +100,7 @@ public class SimpleOAuth2 {
         
         // 3 CHECK IF CREDENTIALS EXIST IN APP
         var authorized = false
-        for storedHash in SimpleOAuth2.sharedInstance.authHashes {
-            let comparingHash = String(data: storedHash, encoding: .utf8)
+        for comparingHash in SimpleOAuth2.sharedInstance.authHashes {
             if (hash == comparingHash) {
                 authorized = true
                 break
@@ -116,11 +115,7 @@ public class SimpleOAuth2 {
 
         
         // 4 GET THE AUTHENTICATOR, CREATE A TOKEN AND SEND IT
-        guard let hashData = hash.data(using: .utf8) else {
-            response.sendUnauthorized(message: "Request unauthorized.", code: 1)
-            return
-        }
-        guard let authenticator = SimpleOAuth2.sharedInstance.authenticators[hashData] else {
+        guard let authenticator = SimpleOAuth2.sharedInstance.authenticators[hash] else {
             response.sendUnauthorized(message: "Request unauthorized.", code: 2)
             return
         }

@@ -1,8 +1,17 @@
 body {
   padding: 50px;
   font: 14px Helvetica, sans-serif
+  color: #1e1e1e
 }
 
 a {
   color: #00b7ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: red;
 }
