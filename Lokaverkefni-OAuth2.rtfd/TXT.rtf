@@ -1,27 +1,26 @@
 {\rtf1\ansi\ansicpg1252\cocoartf1504
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fswiss\fcharset0 ArialMT;}
-{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red255\green255\blue255;}
-{\*\expandedcolortbl;\csgray\c100000;\cssrgb\c13333\c13333\c13333;\cssrgb\c100000\c100000\c100000;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww13320\viewh13740\viewkind1
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;}
+{\*\expandedcolortbl;\csgray\c100000;\csgenericrgb\c10196\c10196\c10196;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13920\viewh14240\viewkind1
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 
 \f0\b\fs36 \cf0 An attempt to explain OAuth 2.0 
 \b0 \
 
-\fs28 One of the goals of OAuth 2.0 is to reduce the attack window to the end-user\'92s  personal data. The security protocol addresses a big security in login systems, which is simply the fact that there are to many login systems.\
+\fs28 One of the goals of OAuth 2.0 is to reduce the attack window to the end-user\'92s personal data. The security protocol addresses a big security issue in login systems, which is simply the fact that there are to many login systems.\
 \
-When a user registers for an account, he usually provides a full name, email, username and password to the requesting service. According to {\field{\*\fldinst{HYPERLINK "https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/"}}{\fldrslt this blog post}} by IT security giant Sophos, 55% of service users reuse most if not all their passwords. This creates a giant window for attackers especially if passwords are kept in each service\'92s database. Clearly this is a problem. When users use multiple services at a time there is at least 55% chance of their password being sent multiple times over the wire.\
+When a user registers for an account, he usually provides a full name, email, username and password to the requesting service. According to {\field{\*\fldinst{HYPERLINK "https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/"}}{\fldrslt this blog post}} by IT security giant Sophos, 55% of service users reuse most if not all their passwords. This creates a giant window for attackers especially if passwords are kept in each service\'92s database. Clearly this is a problem. It would mean that when users use multiple services at a time there is at least 55% chance of their password being sent multiple times over the wire.\
 \
 OAuth 2.0 tries to address this problem by providing the user with a way to authenticate with a service without sending over his password. \
 \
-If the user already has an account for a service acting as an OAuth 2.0 provider, he should be able to authenticate to essentially every service trusting that particular OAuth 2.0 provider. This can be accomplished by redirecting the user to logging into the OAuth 2.0 providing service. By logging into that service the user generates a reusable token signed by the OAuth 2.0 provider along with an added payload including further information about the token e.g. the scope of authority for the token, expiration date and non-sensItive info about the user.\
+If the user already has an account for a service acting as an OAuth 2.0 provider, he should be able to authenticate to essentially every service trusting that particular OAuth 2.0 provider. This can be accomplished by redirecting the user to logging into the OAuth 2.0 providing service. By logging into that service the user generates a reusable token signed by the OAuth 2.0 provider along with an added payload including further information about the token, e.g. the scope of authority for the token, expiration date, and non-sensItive info about the user.\
 \
-With this solution the user will be able to authenticate using his credentials without actually sending his credentials over the wire in each request. The security of this implementation, lies in the fact that the client sending the request will not have to know each user\'92s credentials but will still be able to know his scope of authority.\
+With this solution the user will be able to authenticate using his credentials without actually sending his credentials over the wire in each request. The security of this implementation lies in the fact that the client sending the request will not have to know each user\'92s credentials but will still be able to know his scope of authority.\
 \
-O\'92Auth 2.0 also specifies an improvement when connecting systems without user management. Like when connecting app/apps or device/devices to an API. Introducing O\'92Auth 2\'92 s client_credential grant type.\
+O\'92Auth 2.0 also specifies an improvement when connecting systems without user management. Like when connecting app/apps or device/devices to an API introducing O\'92Auth 2\'92 s client_credential grant type.\
 
 \b \
-\
 \
 \
 \
@@ -43,14 +42,14 @@ O\'92Auth 2.0 also specifies an improvement when connecting systems without user
 \fs36 The flow of the \'93client_credentials\'94 grant type
 \b0 \
 
-\fs28 Alex Bilbie is a famous blogger known for his blogs about the OAuth 1.0 and 2.0 protocols and in section 4.4 of his post, {\field{\*\fldinst{HYPERLINK "http://alexbilbie.com/guide-to-oauth-2-grants/"}}{\fldrslt A Guide To OAuth 2.0 Grants}}, the flow of a client_credentials request is well summarized.\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\fs28 Alex Bilbie is a famous blogger known for his blogs about the OAuth 1.0 and 2.0 protocols. In section 4.4 of his post, {\field{\*\fldinst{HYPERLINK "http://alexbilbie.com/guide-to-oauth-2-grants/"}}{\fldrslt A Guide To OAuth 2.0 Grants}}, the flow of a client_credentials request is well summarized.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
 \cf0 		\
 		\
 		
 \b\fs22 Client Credentials grant (section 4.4)
 \b0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\partightenfactor0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\qj\partightenfactor0
 \cf0 		The simplest of all of the OAuth 2.0 grants, this grant is\
 		suitable for machine-to-machine authentication where a\
 		specific user\'92s permission to access data is not required.\
@@ -95,7 +94,7 @@ O\'92Auth 2.0 also specifies an improvement when connecting systems without user
 \fs24 \
 
 \fs28 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 \cf0 To be able to follow this flow we have to have a proper token format and sign this token in a way that we\'92ll know not only that it was signed by us but also whether or not it has been tampered with. For this project I have decided to use one of the most common token formats, the JavaScript Web Token (JWT), as there exists a {\field{\*\fldinst{HYPERLINK "https://github.com/kylef/JSONWebToken.swift"}}{\fldrslt framework in Swift}} (The language we will be using) for validating and signing JWTs. For more information about JWTs see {\field{\*\fldinst{HYPERLINK "https://jwt.io"}}{\fldrslt www.jwt.io}}.\
 \
 \
@@ -108,11 +107,11 @@ O\'92Auth 2.0 also specifies an improvement when connecting systems without user
 \b0 Our goal in this project is to create a module that helps developers to implement an OAuth 2.0 provider for securing their APIs. 
 \b \
 
-\b0 The OAuth 2.0  protocol can be used for app/device authentication as well as user authentication using the \'93client_credentials\'94 grant. Our main focus is to create an application which simplifies greatly the implementation of an OAuth 2.0 provider for the \'93client_credentials\'94 grant. \
+\b0 The OAuth 2.0 protocol can be used for app/device authentication as well as user authentication using the \'93client_credentials\'94 grant. Our main focus is to create an application which simplifies greatly the implementation of an OAuth 2.0 provider for the \'93client_credentials\'94 grant. \
 \
-There are a lot of OAuth 2.0 provider credential helpers supporting other grant types in Kitura, the framework we will be using, so the focus in the minimum viable product should mainly be the \'93client_credential\'94 grant as support for that is non-existent. \
+There are a lot of OAuth 2.0 helpers supporting other grant types in Kitura, the framework we are targeting, so the focus in the minimum viable product should mainly be the \'93client_credential\'94 grant, as support for that is non-existent. \
 \
-So the minimal viable product is a module providing an easy to use interface for securing APIs with OAuth 2.0\'92s \'93client_credential\'94 grant.\
+So the minimum viable product is a module providing an easy to use interface for securing APIs with OAuth 2.0\'92s \'93client_credential\'94 grant.\
 NOTE:\
 The \'93password\'94 grant could be something to add to the module in the future, as it is also mostly used for first party clients.\
 \
@@ -125,11 +124,11 @@ The \'93password\'94 grant could be something to add to the module in the future
 \
 \
 
-\fs36 Why not just simply us API keys since we only care about pairing single apps/devices with the API?
+\fs36 Why not just simply use API keys since we only care about pairing single apps/devices with the API?
 \fs28 \
 
 \b0 API keys are very simple to use, and can be sufficient in many cases, but  using API keys has its limitations.\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
 \cf0 \
 	1. API keys provide access to all or nothing. While JSON Web 	tokens allow for specifying a scope of authority\
 \
@@ -139,8 +138,8 @@ The \'93password\'94 grant could be something to add to the module in the future
 \
 	4. Keeping API keys hidden adds further implementation\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
-\cf0 In the end it all comes down to what type of API you are developing. JSON Web Tokens are not flawless, their security relies on the implementation of their signature library. In the end it all just comes down to what requirements you set for your API. If you don\'92t need the fancy feature additions, just keep it simple.
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+\cf0 In the end, it all comes down to what type of API you are developing. JSON Web Tokens are not flawless, their security relies on the implementation of their signature library. In the final analysis, all just comes down to what requirements you set for your API. If you don\'92t need the fancy feature additions, just keep it simple.
 \b \
 \
 \
@@ -158,26 +157,25 @@ The \'93password\'94 grant could be something to add to the module in the future
 
 \b0 Our module should add a middleware to the server handling token-issuing as well as token-validation for all requests, the server developer should also be able to decide which route should be accessible depending of the request-token\'92s  scope of authority.\
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 
 \fs24 \cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc\partightenfactor0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
 \cf0 {{\NeXTGraphic Untitled Diagram-2.png \width6000 \height2640
-}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qc\partightenfactor0
-\cf0 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+}¬}\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\qj\partightenfactor0
 \cf0 \
 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 
 \b\fs28 \cf0 The Flow\
 
-\b0 As shown in the picture above, the client sends a request and our module intercepts it, validates it and on success either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.
-\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\partightenfactor0
+\b0 As shown in the picture above, the client sends a request and our module intercepts it, validates it and, on success, either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.
+\f1 \cf2 \expnd0\expndtw0\kerning0
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 
-\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 \
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
 \cf0 \
 }

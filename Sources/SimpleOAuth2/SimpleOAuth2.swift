@@ -14,6 +14,7 @@ import JWT
 
 public class SimpleOAuth2 {
 
+    
     static let authPath = "/oauth2/authorize"
     
     public static var sharedInstance = SimpleOAuth2()
@@ -63,42 +64,19 @@ public class SimpleOAuth2 {
             return
         }
 
-        guard let authParams = extractParams(from: body) else {
+        guard let params = extractParams(from: body) else {
             response.sendBadRequest(message: "Invalid body, use raw utf8 encoded JSON.")
             
             return
         }
-
-        guard let clientId = authParams["client_id"] else {
-            response.sendBadRequest(message: "No id.")
-
-            return
-        }
-        guard let clientSecret = authParams["client_secret"] else {
-            response.sendBadRequest(message: "No secret.")
-
-            return
-        }
-
-        guard let grant = authParams["grant_type"] else {
-            response.sendBadRequest(message: "Invalid grant type.")
-
-            return
-        }
-        
-        guard let scope = authParams["scope"] else {
-            response.sendBadRequest(message: "Invalid scope")
-            return
-        }
-        
-        if (grant != "client_credentials") {
-            response.sendBadRequest(message: "Invalid grant type.")
-
-            return
-        }
         
         // 2 CREATE CREDENTIAL DATA FROM INPUT DATA
-        let credential = SimpleCredential(clientId: clientId, clientSecret: clientSecret, scope: scope)
+        guard let credential = extractCredentials(from: params) else {
+            response.sendBadRequest(message: "Invalid parameters")
+            
+            return
+        }
+        
         let hash = credential.hashedString()
         
         // 3 CHECK IF CREDENTIALS EXIST IN APP
@@ -123,7 +101,7 @@ public class SimpleOAuth2 {
             return
         }
         
-        let token = authenticator.encode(with: clientId, expiresIn: SimpleJWT.tokenDuration)
+        let token = authenticator.encode(with: credential.clientId, expiresIn: SimpleJWT.tokenDuration)
 
         try? response.send(json: JSON([
             "token_type": "Bearer",
@@ -132,6 +110,35 @@ public class SimpleOAuth2 {
         ])).end()
 
 
+    }
+    
+    private static func extractCredentials(from params: [String:Any]) -> SimpleCredential? {
+        guard let clientId = params["client_id"] as? String else {
+            
+            return nil
+        }
+        guard let clientSecret = params["client_secret"] as? String else {
+            
+            return nil
+        }
+        
+        guard let grant = params["grant_type"] as? String else {
+            
+            return nil
+        }
+        
+        guard let scope = params["scope"] as? String else {
+            return nil
+        }
+        
+        if (grant != "client_credentials") {
+            
+            return nil
+        }
+        
+        return SimpleCredential(clientId: clientId,
+                         clientSecret: clientSecret,
+                         scope: scope)
     }
 
     private static func extractParams(from body: String) -> [String: String]? {
