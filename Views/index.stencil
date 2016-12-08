@@ -28,7 +28,7 @@
                     <li><a href="#article-5">Númer 5</a></li>
                 <ul>
             </div>
-            <div class="main-content">
+            <div class="main-content" id="mainContent">
                 <article id="article-1">
                     <h2>Númer 1</h2>
                     <p>
