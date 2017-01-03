@@ -9,9 +9,31 @@ body {
     margin-right: 5%;
 }
 
+hr {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 1em;
+    margin-left: 0em;
+}
+
+article {
+    padding-top: 1em;
+    padding-bottom: 1em:
+}
+
 a {
   color: #00b7ff;
   text-decoration: none;
+}
+
+textarea {
+    box-shadow: inset 2px 2px 2px 0px #ddd;
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 200px;
+    min-height: 200px;
 }
 
 nav {
@@ -20,7 +42,7 @@ nav {
     left: 0px;
     width: 100%;
     height: 56px;
-    background: rgba(52, 152, 219, 0.85);
+    background: rgba(52, 152, 219, 0.8);
     margin-bottom: 2em;
 }
 
@@ -29,23 +51,26 @@ nav a {
     padding-left: 1.5em;
     padding-right: 1.5em;
     padding-top: 20px;
-    padding-bottom: 0px;
-    height: 36px;
+    padding-bottom: 20px;
+    height: 56px;
     display: inline-block;
 }
 
 nav a:hover {
-    background: rgba(52, 152, 219, 0.95);
+    background: rgba(52, 152, 219, 0.85);
+    color: white;
+    text-decoration: none;
 }
 
 /* INDEXING */
 
 .index-block ul {
+    margin-top: 4em;
     list-style-type: none;
 }
 
 .index-block ul li {
-    margin-top: 2em;
+    margin-bottom: 2em;
 }
 
 .index-block {
@@ -53,7 +78,7 @@ nav a:hover {
     left: 0px;
     top: 50px;
     height: 300px;
-    width: 30%;
+    width: 20%;
     float: left;
     text-align: center;
 }
@@ -61,7 +86,7 @@ nav a:hover {
 /* ARTICLES (MAIN CONTENT) */
 
 .main-content {
-    width: 68%;
+    width: 78%;
     float: right;
     padding-left 2%;
 }
@@ -78,4 +103,31 @@ nav a:hover {
 
 .error {
     color: red;
+}
+
+@media screen and (max-width: 1024px) {
+    .index-block {
+        25%;
+    }
+    .main-content {
+        width: 73%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .index-block {
+        30%;
+    }
+    .main-content {
+        width: 68%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .index-block {
+        width: 100%;
+        position: relative;
+    }
+    .main-content {
+        width: 100%;
+    }
 }

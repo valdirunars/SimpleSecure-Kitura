@@ -6,63 +6,285 @@
 
         <title>Lokaverkefni</title>
         <link rel="stylesheet" href="/static/stylesheets/styles.css">
+        <!-- Styles -->
+        <link href="/static/stylesheets/theDocs.all.min.css" rel="stylesheet">
+        <link href="/static/stylesheets/theDocs.css" rel="stylesheet">
+        <link href="/static/stylesheets/custom.css" rel="stylesheet">
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:100,300,400,500%7CLato:300,400' rel='stylesheet' type='text/css'>
+
         <meta name="description" content="Lokaverkefni fyrir Háskóla Íslands">
         <meta name="author" content="Þorvaldur Rúnarsson">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="/static/scripts/jquery-3.1.1.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="/static/scripts/main.js"></script>
+
     </head>
 
-    <body>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">API docs</a>
-            <a href="#">Get In Touch</a>
-        </nav>
-        <div class="wrapper">
-            <div class="index-block">
-                <ul>
-                    <li><a href="#article-1">Númer 1</a></li>
-                    <li><a href="#article-2">Númer 2</a></li>
-                    <li><a href="#article-3">Númer 3</a></li>
-                    <li><a href="#article-4">Númer 4</a></li>
-                    <li><a href="#article-5">Númer 5</a></li>
-                <ul>
-            </div>
-            <div class="main-content" id="mainContent">
-                <article id="article-1">
-                    <h2>Númer 1</h2>
-                    <p>
-                        I think the only card she has is the Lorem card. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? I know words. I have the best words. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Be careful, or I will spill the beans on your placeholder text. This placeholder text is gonna be HUGE. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.
-                    </p>
-                </article>
-                <article id="article-2">
-                    <h2>Númer 2</h2>
-                    <p>
-                        I think the only card she has is the Lorem card. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? I know words. I have the best words. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Be careful, or I will spill the beans on your placeholder text. This placeholder text is gonna be HUGE. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.
-                    </p>
-                </article>
-                <article id="article-3">
-                    <h2>Númer 3</h2>
-                    <p>
-                        I think the only card she has is the Lorem card. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? I know words. I have the best words. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Be careful, or I will spill the beans on your placeholder text. This placeholder text is gonna be HUGE. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.
-                    </p>
-                </article>
-                <article id="article-4">
-                    <h2>Númer 4</h2>
-                    <p>
-                        I think the only card she has is the Lorem card. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? I know words. I have the best words. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Be careful, or I will spill the beans on your placeholder text. This placeholder text is gonna be HUGE. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.
-                    </p>
-                </article>
+    <body data-spy="scroll" data-target=".sidebar" data-offset="200">
 
-                <article id="article-5">
-                    <h2>Númer 5</h2>
-                    <p>
-                        I think the only card she has is the Lorem card. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? I know words. I have the best words. I write the best placeholder text, and I'm the biggest developer on the web by far... While that's mock-ups and this is politics, are they really so different? Lorem Ipsum is the single greatest threat. We are not - we are not keeping up with other websites. Be careful, or I will spill the beans on your placeholder text. This placeholder text is gonna be HUGE. Does everybody know that pig named Lorem Ipsum? She's a disgusting pig, right? You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. All of the words in Lorem Ipsum have flirted with me - consciously or unconsciously. That's to be expected. I have a 10 year old son. He has words. He is so good with these words it's unbelievable. The concept of Lorem Ipsum was created by and for the Chinese in order to make U.S. design jobs non-competitive.
-                    </p>
-                </article>
+      <main class="container">
+        <div class="row">
 
-            </div>
+          <!-- Sidebar -->
+          <aside class="col-sm-3 sidebar">
+
+            <ul class="nav sidenav dropable sticky">
+              <li><a href="#html-structure">Using the Module</a></li>
+              <li>
+                <a href="#title1">SimpleOAuth2</a>
+                <ul>
+                  <li><a href="#subtitle1">About OAuth 2.0</a></li>
+                  <li>
+                    <a href="#subabout_me">client_credentials grant</a>
+                  </li>
+                  <li><a href="#subtitle3">Minimum viable product</a></li>
+                  <li><a href="#subtitle4">Why not just use keys?</a></li>
+                  <li>
+                      <a href="#subtitle4">Design</a>
+                      <ul>
+                          <li><a href="#subtitle5-1">Overview</a></li>
+                          <li><a href="#subtitle5-2">Flow</a></li>
+                      </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#about_me">About Me</a></li>
+            </ul>
+
+          </aside>
+          <!-- END Sidebar -->
+
+
+          <!-- Main content -->
+          <article class="col-sm-9 main-content" role="main">
+
+            <p class="lead">Using an API should be easy, and a simple authentication feature for your API should also be easy to implement. This isn't always the case. I tried to solve problem for Kitura developers with a project called SimpleOAuth2</p>
+
+            <section>
+              <h2 id="html-structure">Using the Module</h2>
+              <p>In your Package.swift file add SimpleOAuth2 as a dependency</p>
+              <pre class="line-numbers"><code class="language-swift">
+                  let package = Package(
+                      name: "YourProject",
+                      targets: [
+                        Target(name: "YourProject", dependencies: [])
+                      ],
+                      dependencies: [
+                        .Package(url: "https://github.com/valdirunars/SimpleSecure-Kitura", majorVersion: 1, minor: 0)
+                      ],
+                      exclude: ["Makefile", "Package-Builder"])
+
+              </code></pre>
+              <p>You can then use the SimpleOAuth2 module to secure your API</p>
+              <pre class="line-numbers"><code class="language-swift">
+import SimpleOAuth2
+
+let router: Router = Router()
+SimpleOAuth2.sharedInstance.publicPaths = [
+  "/",
+  "/static/*",
+]
+SimpleOAuth2.sharedInstance.restrictedPaths = [
+    "/adminJSON": "admin",
+    "/userJSON": "user,admin"
+]
+
+SimpleOAuth2.sharedInstance.simplySecure(router: router, with: [
+    SimpleCredential(clientId: "1234", clientSecret: "4321", scope: "admin"),
+    SimpleCredential(clientId: "4321", clientSecret: "1234", scope: "user")
+])
+              </code></pre>
+
+              <p>Send as simple HTTP POST request to the <code>localhost:8090/oauth2/authorize</code> with the following body</p>
+              <pre class="line-numbers"><code class="language-json">
+  {
+  	"grant_type":"client_credentials",
+  	"client_id":"1234",
+  	"client_secret":"4321",
+  	"scope": "admin"
+  }
+              </code></pre>
+              <p>You will receive a token response similar to the one below:</p>
+              <pre class="line-numbers"><code class="language-json">
+  {
+    "token_type": "Bearer",
+    "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIxMjM0IiwiaWF0IjoxNDgzMzEyOTE5LjEwMDQyOSwiZXhwIjoxNDgzMzE0NzE5LjEwMDQ0Miwic2NvcGUiOiJhZG1pbiJ9.a8u-xUr8dui1hj-ri3eoe0qxPm2gVIHz6j8dIGgV2cLA7Y17s3zoGdu3C0R0BlZ_2pvv8cuEq5ULtMPt644WRw",
+    "expires_in": "1800.0"
+  }
+              </code></pre>
+              <p>
+                  You can then use this token to access the API's resources, currently we use a route defined on this test server
+                  <code>localhost:8090/adminJSON</code>
+                  or
+                  <code>localhost:8090/userJSON</code>
+                  depending on the scope specified. The request should then return a response of the following format if the token used is valid
+              </p>
+              <pre class="line-numbers"><code class="language-json">
+  {
+    "messsage": "Secured by $scope credential"
+  }
+              </code></pre>
+            </section>
+
+            <section>
+              <h2 id="title1">SimpleOAuth2</h2>
+              <h3 id="subtitle1">About OAuth 2.0</h3>
+              <p>
+                  One of the goals of OAuth 2.0 is to reduce the attack window to the end-user’s personal data. The security protocol addresses a big security issue in login systems, which is simply the fact that there are to many login systems.
+              </p>
+
+              <p>
+                  When a user registers for an account, he usually provides a full name, email, username and password to the requesting service. According to
+                  <a href="https://nakedsecurity.sophos.com/2013/04/23/users-same-password-most-websites/">this blog post</a>
+                    by IT security giant Sophos, 55% of service users reuse most if not all their passwords. This creates a giant window for attackers especially if passwords are kept in each service’s database. Clearly this is a problem. It would mean that when users use multiple services at a time there is at least 55% chance of their password being sent multiple times over the wire.
+              </p>
+
+              <p>
+                  OAuth 2.0 tries to address this problem by providing the user with a way to authenticate with a service without sending over his password.
+              </p>
+
+              <p>
+                  If the user already has an account for a service acting as an OAuth 2.0 provider, he should be able to authenticate to essentially every service trusting that particular OAuth 2.0 provider. This can be accomplished by redirecting the user to logging into the OAuth 2.0 providing service. By logging into that service the user generates a reusable token signed by the OAuth 2.0 provider along with an added payload including further information about the token, e.g. the scope of authority for the token, expiration date, and non-sensItive info about the user.
+              </p>
+
+              <p>
+                  With this solution the user will be able to authenticate using his credentials without actually sending his credentials over the wire in each request. The security of this implementation lies in the fact that the client sending the request will not have to know each user’s credentials but will still be able to know his scope of authority.
+              </p>
+              <p>
+                  O’Auth 2.0 also specifies an improvement when connecting systems without user management. Like when connecting app/apps or device/devices to an API introducing O’Auth 2’ s client_credential grant type.
+              </p>
+              <h3 id="subabout_me">client_credentials grant</h3>
+              <p>
+                  Alex Bilbie is a famous blogger known for his blogs about the OAuth 1.0 and 2.0 protocols. In section 4.4 of his post,
+                  <a href="https://alexbilbie.com/guide-to-oauth-2-grants/">A Guide To OAuth 2.0 Grants</a>,
+                  the flow of a client_credentials request is well summarized.
+              </p>
+              <blockquote cite="https://alexbilbie.com/guide-to-oauth-2-grants/">
+                  Client Credentials grant (section 4.4) <br/><br/>
+          		The simplest of all of the OAuth 2.0 grants, this grant is
+          		suitable for machine-to-machine authentication where a
+          		specific user’s permission to access data is not required.<br/><br/>
+
+          		The Flow<br/><br/>
+          		The client sends a POST request with following body
+          		parameters to the authorization server:<br/><br/>
+          		- grant_type with the value client_credentials<br/>
+          		- client_id with the client’s ID<br/>
+          		- client_secret with the client’s secret<br/>
+          		- scope with a space-delimited list of requested scope
+          		  permissions<br/><br/>
+          		The Authorization server will respond with a JSON object
+          		containing the following properties:<br/><br/>
+          		- token_type with the value Bearer<br/>
+          		- expires_in with an integer representing the TTL of the access token<br/>
+          		- access_token the access token itself<br/>
+              </blockquote>
+              <p>
+                  To be able to follow this flow we have to have a proper token format and sign this token in a way that we’ll know not only that it was signed by us but also whether or not it has been tampered with. For this project I have decided to use one of the most common token formats, the JavaScript Web Token (JWT), as there exists a
+                  <a href="https://github.com/kylef/JSONWebToken.swift">framework in Swift</a>
+                  (The language we will be using) for validating and signing JWTs. For more information about JWTs see
+                  <a href="https://www.jwt.io">www.jwt.io</a>.
+              </p>
+
+              <h3 id="subtitle3">Minimum viable product</h3>
+              <p>
+                  Our goal in this project is to create a module that helps developers to implement an OAuth 2.0 provider for securing their APIs.
+              </p>
+              <p>
+                  The OAuth 2.0 protocol can be used for app/device authentication as well as user authentication using the “client_credentials” grant. Our main focus is to create an application which simplifies greatly the implementation of an OAuth 2.0 provider for the “client_credentials” grant.
+              </p>
+
+              <p>
+                  There are a lot of OAuth 2.0 helpers supporting other grant types in Kitura, the framework we are targeting, so the focus in the minimum viable product should mainly be the “client_credential” grant, as support for that is non-existent.
+              </p>
+
+              <p>
+                  So the minimum viable product is a module providing an easy to use interface for securing APIs with OAuth 2.0’s “client_credential” grant.
+              </p>
+              <p>NOTE:<p/>
+              <p>
+                  The “password” grant could be something to add to the module in the future, as it is also mostly used for first party clients.
+              </p>
+
+              <h3 id="subtitle4">Why not just use keys?</h3>
+              <p>
+                  API keys are very simple to use, and can be sufficient in many cases, but  using API keys has its limitations.
+              </p>
+              <ul>
+                  <li>
+                      <p>
+                          API keys provide access to all or nothing. While JSON Web 	tokens allow for specifying a scope of authority
+                      </p>
+                  </li>
+                  <li>
+                      <p>
+                          API keys usually don’t expire, but JSON Web tokens can be told 	to expire.
+                      </p>
+                  </li>
+                  <li>
+                      <p>
+                          API keys are just strings and cannot be inspected.
+                      </p>
+                  </li>
+                  <li>
+                      <p>
+                          Keeping API keys hidden adds further implementation
+                      </p>
+                  </li>
+              </ul>
+              <p>
+                  In the end, it all comes down to what type of API you are developing. JSON Web Tokens are not flawless, their security relies on the implementation of their signature library. In the final analysis, all just comes down to what requirements you set for your API. If you don’t need the fancy feature additions, just keep it simple.
+              </p>
+
+              <h3 id="subtitle5">Design</h3>
+              <p id="subtitle5-1">
+                  Our module should add a middleware to the server handling token-issuing as well as token-validation for all requests, the server developer should also be able to decide which route should be accessible depending of the request-token’s  scope of authority.
+              </p>
+              <br/><img src="/static/img/Diagram.png"/>
+              <br/><br/>
+              <p id="subtitle5-2">
+                  As shown in the picture above, the client sends a request and our module intercepts it, validates it and, on success, either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.
+              </p>
+            </section>
+
+            <section>
+              <h2 id="about_me">About Me</h2>
+              <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
+              <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
+            </section>
+
+          </article>
+          <!-- END Main content -->
         </div>
+      </main>
+
+
+      <!-- Footer -->
+      <footer class="site-footer">
+        <div class="container">
+          <a id="scroll-up" href="#"><i class="fa fa-angle-up"></i></a>
+
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <p>Copyright &copy; 2016. Thorvaldur Runarsson All right reserved</p>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <ul class="footer-menu">
+                <li><a href="#">^</a></li>
+                <li><a href="mailto:valdirunars@gmail.com">Contact us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- END Footer -->
+
+      <!-- Scripts -->
+      <script src="/static/scripts/theDocs.all.min.js"></script>
+      <script src="/static/scripts/theDocs.js"></script>
+      <script src="/static/scripts/custom.js"></script>
 
     </body>
 </html>

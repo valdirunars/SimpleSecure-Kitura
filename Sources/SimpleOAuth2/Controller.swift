@@ -56,9 +56,28 @@ public class Controller {
 
   func get(request: RouterRequest, response: RouterResponse, next: () -> Void) {
       // https://github.com/groue/GRMustache.swift
-
+    
       do {
-          try response.render("index.stencil", context: [:]).end()
+        var isAdmin = false
+        if let token = request.queryParameters["token"] {
+            for auth in SimpleOAuth2.sharedInstance.authenticators.values {
+                if auth.authorize(token: token) &&
+                    auth.scope == "admin" {
+                    isAdmin = true
+                    break
+                }
+            }
+        }
+        
+        
+        if isAdmin {
+            try response.render("index.stencil", context: [ "admin": "true"]).end()
+        }
+        else
+        {
+            try response.render("index.stencil", context: [ : ]).end()
+        }
+        
       } catch {
           response.status(.badRequest).send(json: JSON([
               "errorMessage": error.localizedDescription
