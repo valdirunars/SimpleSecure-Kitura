@@ -15,7 +15,6 @@ import CloudFoundryDeploymentTracker
 
 do {
   // HeliumLogger disables all buffering on stdout
-  HeliumLogger.use(LoggerMessageType.info)
   let controller = try Controller()
   Log.info("Server will be started on '\(controller.url)'.")
   CloudFoundryDeploymentTracker(repositoryURL: "https://github.com/IBM-Bluemix/SimpleSecure-Kitura.git", codeVersion: nil).track()
