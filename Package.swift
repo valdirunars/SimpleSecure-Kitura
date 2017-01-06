@@ -22,7 +22,7 @@ let package = Package(
       Target(name: "SimpleOAuth2", dependencies: [])
     ],
     dependencies: [
-      .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 1, minor: 2),
+      .Package(url: "https://github.com/IBM-Swift/Kitura.git", majorVersion: 1, minor: 3),
       .Package(url: "https://github.com/IBM-Swift/Swift-cfenv.git", majorVersion: 1, minor: 8),
       .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", majorVersion: 15),
       .Package(url: "https://github.com/IBM-Bluemix/cf-deployment-tracker-client-swift.git", majorVersion: 0, minor: 6),
