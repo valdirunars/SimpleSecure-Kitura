@@ -12,6 +12,7 @@ import SwiftyJSON
 import LoggerAPI
 import CloudFoundryEnv
 import KituraStencil
+import SimpleSecure
 
 public class Controller {
 

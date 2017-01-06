@@ -5,6 +5,7 @@
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
     "40635794C1929E96A4709153927459486D34FA7B" : 9223372036854775807,
+    "E9B75C3EEE5EE2C3842EB8D675CB45F75C564B27" : 9223372036854775807,
     "3DA8097D366B6AFDAEA91946C35253AA1EBC780B" : 9223372036854775807,
     "FAE24D5A8FEA749B395E6EB085765F54F8FA1263" : 9223372036854775807,
     "77528AA6C8B451D66547916CA3CB970C85CBD7B4" : 9223372036854775807,
@@ -15,6 +16,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "634A916E-B5A3-4D2D-ADBA-0C3DAE4415E9",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "40635794C1929E96A4709153927459486D34FA7B" : "SimpleOAuth2\/Packages\/Kitura-net-1.2.3\/",
+    "E9B75C3EEE5EE2C3842EB8D675CB45F75C564B27" : "SimpleOAuth2\/Packages\/SimpleSecure-1.0.0\/",
     "3DA8097D366B6AFDAEA91946C35253AA1EBC780B" : "SimpleOAuth2\/Packages\/Stencil-0.6.0\/",
     "FAE24D5A8FEA749B395E6EB085765F54F8FA1263" : "SimpleOAuth2\/Packages\/CloudFoundryEnv-1.8.1\/",
     "77528AA6C8B451D66547916CA3CB970C85CBD7B4" : "SimpleOAuth2\/Packages\/SSLService-0.12.5\/",
@@ -55,6 +57,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/krzyzanowskim\/CryptoSwift",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C3D8ED1CB28D809ADCE2C0DE74935E8A502ACD53"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/valdirunars\/SimpleSecure",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E9B75C3EEE5EE2C3842EB8D675CB45F75C564B27"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/IBM-Swift\/Swift-cfenv.git",

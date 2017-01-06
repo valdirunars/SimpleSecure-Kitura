@@ -92,8 +92,9 @@ O\'92Auth 2.0 also specifies an improvement when connecting systems without user
 \i access_token 
 \i0 the access token itself
 \fs24 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl288\slmult1\pardirnatural\qj\partightenfactor0
 
-\fs28 \
+\fs28 \cf0 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 \cf0 To be able to follow this flow we have to have a proper token format and sign this token in a way that we\'92ll know not only that it was signed by us but also whether or not it has been tampered with. For this project I have decided to use one of the most common token formats, the JavaScript Web Token (JWT), as there exists a {\field{\*\fldinst{HYPERLINK "https://github.com/kylef/JSONWebToken.swift"}}{\fldrslt framework in Swift}} (The language we will be using) for validating and signing JWTs. For more information about JWTs see {\field{\*\fldinst{HYPERLINK "https://jwt.io"}}{\fldrslt www.jwt.io}}.\
 \
@@ -170,8 +171,65 @@ The \'93password\'94 grant could be something to add to the module in the future
 
 \b\fs28 \cf0 The Flow\
 
-\b0 As shown in the picture above, the client sends a request and our module intercepts it, validates it and, on success, either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.
+\b0 As shown in the picture above, the client sends a request and our module intercepts it, validates it and, on success, either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.\
+\
+
+\b\fs36 Report\
+
+\b0\fs28 \
+As I am fairly new to both Swift (the programming language this project is written) and Kitura (the key framework dependency for this project), I think it's worth mentioning what I learned exploring their features.\
+\
+So what is so different about Swift. Although Swift provides object oriented features as well as functional features, probably the most noteworthy to mention would be its way of implementing protocol orientation. Unlike many other programming languages that claim to provide a protocol oriented interface, Swift uses protocols both to communicate between unrelated classes and to template classes that share features. The latter ideology resulting in a collection of building blocks that make Swift's generic type feature. This means that we can limit state (and therefor minify unit tests) by creating type templates allowing the compiler to catch many of (maybe) otherwise hard to find bugs, as errors.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
 \f1 \cf2 \expnd0\expndtw0\kerning0
+\
+Further reading on Apple's book on Swift showed more awesome features such as (my favourite) the language's way to represent enumeration. In Swift enums aren't the same as enums in most languages. In most other languages enumerations are simply used to represent a single state as a switchable variable, while in Swift they are taken to a whole new level and include the possibility to represent an entire state machine by offering the possibility of a recursive constructor and the possibility of containing storing values. This helps us to decrease the lines of code in our app and is yet another cool Swifty way to limit states.\
+\
+Another important feature in Swift is that strings are unicode-compliant. This means that you can create strings with both multi-character elements as well as simple characters when composing a string as opposed to representing a string simply as a character sequence. It means that you don't have to implement or include some module to deal with these elements. It also means that you can use multi-character elements such as Chinese letters or even emojis seamlessly in your strings and without braking them into characters.\
+\
+Kitura exploits Swift's features well and creates a good interface for creating web services. When I started working with the framework's API I almost felt as if I knew everything already. I then came to understand that it is highly based on the express.js framework in which I already had a decent amount of experience and was in fact aiming to look like the javascript framework. There isn\'92t really much more to say about Kitura because of its youth, it just recently came out of Beta and is still shy of a few features express.js provides.\
+\
+But even though Kitura is young it still has a big advantage over express.js, it is written in the very fast strictly typed language we love, Swift. Using it I will be able to exploit the language\'92s features to simplify our code and limit state which is ideal for security modules such as the one I am implementing.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f0\b\fs36 \cf0 \kerning1\expnd0\expndtw0 Problems encountered \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f1\b0\fs28 \cf2 \expnd0\expndtw0\kerning0
+Although developing the service itself was a fairly trivial task I had to scrap some of very desirable features in the initial release due to a couple of third party problems\
+\
+* Kitura's youth.\
+* The Swift 2.3 to Swift 3.0 update\
+\
+Kitura started to show its youth right from the start. In the beginning of this project all we had was the initial beta (v.0.1), it was a very buggy release that had very few helper packages to speed up development. I wouldn't call this  problem a major one as I had enough design issues to address, but it did make the project throughout quite tedious and boring (All design and no play make me a dull boy).\
+\
+The Swift major update was a much bigger problem. Many many things changed between the versions and I knew things were going to break. And what do you know, an important dependency in our project disallowed older versions than the one supporting the new Swift 3 forcing us to move the whole project to the new updated SDK. This broke many dependencies and I was forced to write my own hacky version of many dependency features as I did not know when/if they would be updated to support Swift 3.\
+\
+Eventually the dependencies were updated to use Swift 3 but the time it took was far too long and I had to scrap some of the more important features in the first release such as having the module containing a predefined admin scope which has access to all routes and is able to create credentials.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f0\b\fs36 \cf0 \kerning1\expnd0\expndtw0 Lesson\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f1\b0\fs28 \cf2 \expnd0\expndtw0\kerning0
+Beware of early API versions in deadline projects, even if the framework or platform you are interested in is the next big thing in technology, when you have a deadline for your project it might not be the right move. In the end you want to have a nice project to show your instructor/boss.\
+\
+Despite the negatives, the project went well as far as education is concerned. I learned a lot about Swift and Kitura, have grown confident in their APIs and have gotten confident about setting up Kitura based web applications.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f0\b\fs36 \cf0 \kerning1\expnd0\expndtw0 What's next?\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
+
+\f1\b0\fs28 \cf2 \expnd0\expndtw0\kerning0
+As stated in the previous section some features had to be scrapped out due to lack of time. But that was just for the initial release and  we will of course still be implementing those features.\
+\
+* Admin as a fixed credential with authority to add credentials\
+*  password grant support\
+* Package available in the Swift Package Catalogue\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\sl360\slmult1\pardirnatural\qj\partightenfactor0
 

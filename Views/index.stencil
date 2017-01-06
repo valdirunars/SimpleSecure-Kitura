@@ -29,11 +29,10 @@
 
           <!-- Sidebar -->
           <aside class="col-sm-3 sidebar">
-
             <ul class="nav sidenav dropable sticky">
-              <li><a href="#html-structure">Using the Module</a></li>
+              <li><a href="#html-structure">Using SimpleSecure</a></li>
               <li>
-                <a href="#title1">SimpleOAuth2</a>
+                <a href="#title1">Introduction</a>
                 <ul>
                   <li><a href="#subtitle1">About OAuth 2.0</a></li>
                   <li>
@@ -50,6 +49,26 @@
                   </li>
                 </ul>
               </li>
+              <li>
+                  <a href="#title2">Report</a>
+                  <ul>
+                      <li><a href="#report-1">Exploring Swift</a></li>
+                      <li><a href="#report-2">Exploring Kitura</a></li>
+                      <li>
+                          <a href="#report-3">Problems encountered</a>
+                          <ul>
+                              <li><a href="#report-3-1">Kitura's youth</a></li>
+                              <li><a href="#report-3-2">Swift 3.0 update</a></li>
+                          </ul>
+                      </li>
+                      <li>
+                          <a href="#report-4">The Lesson</a>
+                      </li>
+                      <li>
+                          <a href="#report-5">What's Next?</a>
+                      </li>
+                  </ul>
+              </li>
               <li><a href="#about_me">About Me</a></li>
             </ul>
 
@@ -59,12 +78,15 @@
 
           <!-- Main content -->
           <article class="col-sm-9 main-content" role="main">
+            <section>
+                <h2>SimpleSecure</h2>
+                <p class="lead">Using an API should be easy, and a simple authentication feature for your API should also be easy to implement. This isn't always the case so I tried to solve problem for Kitura developers with a project called SimpleSecure</p>
+            </section>
 
-            <p class="lead">Using an API should be easy, and a simple authentication feature for your API should also be easy to implement. This isn't always the case. I tried to solve problem for Kitura developers with a project called SimpleOAuth2</p>
 
             <section>
-              <h2 id="html-structure">Using the Module</h2>
-              <p>In your Package.swift file add SimpleOAuth2 as a dependency</p>
+              <h2 id="html-structure">Using SimpleSecure</h2>
+              <p>In your Package.swift file add SimpleSecure as a dependency</p>
               <pre class="line-numbers"><code class="language-swift">
                   let package = Package(
                       name: "YourProject",
@@ -72,14 +94,14 @@
                         Target(name: "YourProject", dependencies: [])
                       ],
                       dependencies: [
-                        .Package(url: "https://github.com/valdirunars/SimpleSecure-Kitura", majorVersion: 1, minor: 0)
+                        .Package(url: "https://github.com/valdirunars/SimpleSecure", majorVersion: 1, minor: 0)
                       ],
                       exclude: ["Makefile", "Package-Builder"])
 
               </code></pre>
-              <p>You can then use the SimpleOAuth2 module to secure your API</p>
+              <p>You can then use the SimpleSecure module to secure your API</p>
               <pre class="line-numbers"><code class="language-swift">
-import SimpleOAuth2
+import SimpleSecure
 
 let router: Router = Router()
 SimpleOAuth2.sharedInstance.publicPaths = [
@@ -115,11 +137,14 @@ SimpleOAuth2.sharedInstance.simplySecure(router: router, with: [
   }
               </code></pre>
               <p>
-                  You can then use this token to access the API's resources, currently we use a route defined on this test server
-                  <code>localhost:8090/adminJSON</code>
-                  or
-                  <code>localhost:8090/userJSON</code>
-                  depending on the scope specified. The request should then return a response of the following format if the token used is valid
+                  You can test the flow yourself in this web application as it already has routes secured token to access the API's resources, the route
+                  <code>/adminJSON</code>
+                  is secured by scope = admin and
+                  <code>/userJSON</code>
+                  is secured by scope = user
+              </p>
+              <p>
+                The request should then return a response of the following format if the token used is valid
               </p>
               <pre class="line-numbers"><code class="language-json">
   {
@@ -129,7 +154,7 @@ SimpleOAuth2.sharedInstance.simplySecure(router: router, with: [
             </section>
 
             <section>
-              <h2 id="title1">SimpleOAuth2</h2>
+              <h2 id="title1">Introduction</h2>
               <h3 id="subtitle1">About OAuth 2.0</h3>
               <p>
                   One of the goals of OAuth 2.0 is to reduce the attack window to the end-user’s personal data. The security protocol addresses a big security issue in login systems, which is simply the fact that there are to many login systems.
@@ -248,11 +273,90 @@ SimpleOAuth2.sharedInstance.simplySecure(router: router, with: [
                   As shown in the picture above, the client sends a request and our module intercepts it, validates it and, on success, either returns a token signed by the server or sends the request to the server depending on whether the request is requesting a token or server resource. The server can then handle a request without having to worry about the authentication process.
               </p>
             </section>
+            <section>
+                <h2 id="title2">Report</h2>
+                <p>
+                    As I am fairly new to both Swift (the programming language this project is written) and Kitura (the key framework dependency for this project), I think it's worth mentioning what I learned exploring their features.
+                </p>
+                <h3 id="report-1">Exploring Swift</h3>
+                <p>
+                    So what is so different about Swift. Although Swift provides object oriented features as well as functional features, probably the most noteworthy to mention would be its way of implementing protocol orientation. Unlike many other programming languages that claim to provide a protocol oriented interface, Swift uses protocols both to communicate between unrelated classes and to template classes that share features. The latter ideology resulting in a collection of building blocks that make Swift's generic type feature. This means that we can limit state (and therefor minify unit tests) by creating type templates allowing the compiler to catch many of (maybe) otherwise hard to find bugs, as errors.
+                </p>
+                <p>
+                    Further reading on Apple's book on Swift showed more awesome features such as (my favourite) the language's way to represent enumeration. In Swift enums aren't the same as enums in most languages. In most other languages enumerations are simply used to represent a single state as a switchable variable, while in Swift they are taken to a whole new level and include the possibility to represent an entire state machine by offering the possibility of a recursive constructor and the possibility of containing storing values. This helps us to decrease the lines of code in our app and is yet another cool Swifty way to limit states.
+                </p>
+                <p>
+                    Another important feature in Swift is that strings are unicode-compliant. This means that you can create strings with both multi-character elements as well as simple characters when composing a string as opposed to representing a string simply as a character sequence. It means that you don't have to implement or include some module to deal with these elements. It also means that you can use multi-character elements such as Chinese letters or even emojis seamlessly in your strings and without braking them into characters.
+                </p>
+                <h3 id="report-2">Exploring Kitura</h3>
+                <p>
+                    Kitura exploits Swift's features well and creates a good interface for creating web services. When I started working with the framework's API I almost felt as if I knew everything already. I then came to understand that it is highly based on the express.js framework in which I already had a decent amount of experience and was in fact aiming to look like the javascript framework. There isn’t really much more to say about Kitura because of its youth, it just recently came out of Beta and is still shy of a few features express.js provides.
+                </p>
+                <p>
+                    But even though Kitura is young it still has a big advantage over express.js, it is written in the very fast strictly typed language we love, Swift. Using it I will be able to exploit the language’s features to simplify our code and limit state which is ideal for security modules such as the one I am implementing.
+                </p>
+                <h3 id="report-3">Problems encountered</h3>
+                <p>
+                    Although developing the service itself was a fairly trivial task I had to scrap some very desirable features in the initial release due to a couple of third party problems
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            Kitura's youth
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            The Swift 2.3 to Swift 3.0 update
+                        </p>
+                    </li>
+                </ul>
+                <p id="report-3-1">
+                    Kitura started to show its youth right from the start. In the beginning of this project all we had was the initial beta (v.0.1), it was a very buggy release that had very few helper packages to speed up development. I wouldn't call this  problem a major one as I had enough design issues to address, but it did make the project throughout quite tedious and boring (All design and no play make me a dull boy).
+                </p>
+                <p id="report-3-2">
+                    The Swift major update was a much bigger problem. Many many things changed between the versions and I knew things were going to break. And what do you know, an important dependency in our project disallowed older versions than the one supporting the new Swift 3 forcing us to move the whole project to the new updated SDK. This broke many dependencies and I was forced to write my own hacky version of many dependency features as I did not know when/if they would be updated to support Swift 3.
+                </p>
+                <p>
+                    Eventually the dependencies were updated to use Swift 3 but the time it took was far too long and I had to scrap some of the more important features in the first release such as having the module containing a predefined admin scope which has access to all routes and is able to create credentials.
+                </p>
 
+                <h3 id="report-4">The Lesson</h3>
+                <p>
+                    Beware of early API versions in deadline projects, even if the framework or platform you are interested in is the next big thing in technology, when you have a deadline for your project it might not be the right move. In the end you want to have a nice project to show your instructor/boss.
+                </p>
+                <p>
+                    Despite the negatives, the project went well as far as education is concerned. I learned a lot about Swift and Kitura, have grown confident in their APIs and gotten familiar with setting up Kitura based web applications like this one (hosted on Bluemix).
+                </p>
+
+                <h3 id="report-5">What's next?</h3>
+                <p>
+                    As stated in the previous section some features had to be scrapped out due to lack of time. But that was just for the initial release and  we will of course still be implementing those features.
+                </p>
+                <ul>
+                    <li>
+                        <p>
+                            Admin as a fixed credential with authority to add credentials
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            password grant support
+                        </p>
+                    </li>
+                    <li>
+                        <p>
+                            Package available in the Swift Package Catalogue
+                        </p>
+                    </li>
+                </ul>
+            </section>
             <section>
               <h2 id="about_me">About Me</h2>
-              <p>Integer egestas ante id justo mollis feugiat ac vel metus. Nunc pulvinar scelerisque faucibus. Aenean at libero hendrerit, feugiat felis suscipit, facilisis justo. Praesent laoreet rutrum velit vitae facilisis. Fusce ac consectetur leo. Praesent dapibus interdum arcu, et hendrerit mi imperdiet eget. Morbi volutpat, leo id interdum aliquet, massa justo vestibulum nisl, eget posuere velit diam ac nibh. Duis tellus enim, porttitor id lectus vitae, tristique congue odio. Duis elementum porttitor nibh et porta. Suspendisse potenti.</p>
-              <p>Ut vitae sagittis ex. In porttitor ante in nunc ultrices malesuada. Praesent iaculis odio vitae volutpat tempus. Nullam a sodales lorem, nec pellentesque odio. Praesent ullamcorper nisl commodo justo imperdiet dignissim. Duis purus magna, congue sit amet varius condimentum, dapibus tristique urna. Aliquam congue molestie tempor. Curabitur vel arcu vel nibh euismod porttitor. Sed a dolor maximus ex tempus pharetra rhoncus et nulla. Integer dolor ex, lobortis ac leo non, dapibus cursus ligula. Fusce sed ultrices urna, vel tincidunt mi. Nullam neque dolor, tempor nec lorem vitae, scelerisque consectetur quam.</p>
+              <p>
+                  My name is Thorvaldur Runarsson, I'm a computer science major at the University of Iceland. I have been practicing mobile and web development since 2012 and I've developed/worked on projects such as <a href="https://www.airserver.com">AirServer</a> & <a href="https://www.airmediacenter.com"> Air Media Center</a> and am currently working on a gaming platform called GameSmash.
+              </p>
+
             </section>
 
           </article>
